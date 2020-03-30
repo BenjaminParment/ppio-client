@@ -1,0 +1,25 @@
+@import '~assets/scss/colors.scss';
+
+$HEADER_HEIGHT: 100px;
+$FOOTER_HEIGHT: 50px;
+
+.home-parent-container {
+    display: flex;
+    flex-direction: column;
+
+    .header {
+        height: $HEADER_HEIGHT;
+        width: 100%;
+        background-color: $GENERAL_BACKGROUND;
+    }
+
+    .body {
+        height: calc(100vh - (#{$FOOTER_HEIGHT} + #{$HEADER_HEIGHT}));
+    }
+
+    .footer {
+        top: calc(100vh - 50px);
+        height: $FOOTER_HEIGHT;
+        background-color: $GENERAL_BACKGROUND;
+    }
+}
