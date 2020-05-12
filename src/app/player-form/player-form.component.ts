@@ -8,12 +8,12 @@ import { Player } from './player/player';
     selector: 'app-player-form',
     templateUrl: './player-form.component.html',
     styleUrls: ['./player-form.component.scss'],
+    providers: [NetworkService],
 })
 export class PlayerFormComponent implements OnInit {
     playerForm: FormGroup;
-    networkTest: NetworkService<Player>;
 
-    constructor(private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder, private networkTest: NetworkService<Player>) {}
 
     ngOnInit() {
         this.playerForm = this.fb.group({
@@ -25,6 +25,12 @@ export class PlayerFormComponent implements OnInit {
 
     onSubmit = () => {
         console.log(this.playerForm.value);
-        this.networkTest.post('/players', this.playerForm.value as Player);
+        this.networkTest
+            .post('players', {
+                first_name: this.playerForm.value.first_name,
+                last_name: this.playerForm.value.last_name,
+                email: this.playerForm.value.email,
+            })
+            .subscribe();
     };
 }
