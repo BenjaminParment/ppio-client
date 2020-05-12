@@ -1,0 +1,11 @@
+<div class="player-form-parent-container">
+    <form [formGroup]="playerForm">
+        <label class="label">First name <input class="input" type="text" formControlName="first_name" /></label>
+
+        <label class="label">Last name <input class="input" formControlName="last_name" /></label>
+
+        <label class="label">Email <input class="input" ng-model="email" formControlName="email" /></label>
+
+        <button class="submit-button" (click)="onSubmit()">Submit</button>
+    </form>
+</div>
