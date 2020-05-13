@@ -31,6 +31,6 @@ export class PlayerFormComponent implements OnInit {
                 last_name: this.playerForm.value.last_name,
                 email: this.playerForm.value.email,
             })
-            .subscribe();
+            .subscribe((x) => console.log(x));
     };
 }
