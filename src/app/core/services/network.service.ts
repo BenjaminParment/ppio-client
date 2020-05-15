@@ -1,28 +1,18 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class NetworkService<T> {
-    private apiUrl: string = 'http://localhost:9002';
-    private corsHeaders: HttpHeaders;
+    private api_url: string = 'http://localhost:9002';
 
-    constructor(private httpClient: HttpClient) {
-        this.corsHeaders = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'POST',
-        });
-    }
+    constructor(private httpClient: HttpClient) {}
 
     public get(endpoint: string): Observable<T> {
-        return this.httpClient.get<T>(`${this.apiUrl}/${endpoint}`);
+        return this.httpClient.get<T>(`${this.api_url}/${endpoint}`);
     }
 
     public post(endpoint: string, content: T): Observable<T> {
-        return this.httpClient.post<T>(`${this.apiUrl}/${endpoint}`, content, { headers: this.corsHeaders });
+        return this.httpClient.post<T>(`${this.api_url}/${endpoint}`, content);
     }
 }
